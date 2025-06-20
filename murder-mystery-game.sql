@@ -115,6 +115,41 @@ WHERE person_id = '14887'
 -- on the bag started with "48Z". Only gold members have those bags. The man got into a car with a 
 -- plate that included "H42W".
 
+SELECT membership_id
+FROM get_fit_now_check_in
+WHERE membership_id LIKE '48z%' AND check_in_date = '20180109'
+--RESULTS
+--membership_id
+--48Z7A
+--48Z55
+
+SELECT * 
+FROM get_fit_now_member
+WHERE id = '48Z7A' OR id = '48Z55'
+--RESULts
+--id	person_id	name	membership_start_date	membership_status
+--48Z55	67318	Jeremy Bowers	20160101	gold
+--48Z7A	28819	Joe Germuska	20160305	gold
+
+SELECT p.name, d.plate_number 
+FROM person AS p
+JOIN drivers_license AS d 
+ON p.license_id = d.id
+WHERE p.name = 'Joe Germuska' or p.name = 'Jeremy Bowers'
+--RESULTS
+--name	plate_number
+--Jeremy Bowers	0H42W2
+
+INSERT INTO solution VALUES (1, 'Jeremy Bowers');
+        
+        SELECT value FROM solution;
+--value
+Congrats, you found the murderer! But wait, there's more... If you think you're up 
+for a challenge, try querying the interview transcript of the murderer to find the real 
+villain behind this crime. If you feel especially confident in your SQL skills, try to 
+complete this final step with no more than 2 queries. Use this same INSERT statement with
+your new suspect to check your answer.
+
 
 
 -- Record your SQL detective process here!  Write down: 
